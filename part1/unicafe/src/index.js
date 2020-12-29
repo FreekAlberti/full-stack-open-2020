@@ -27,9 +27,28 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const goodInc = () => setGood(good + 1);
-  const neutralInc = () => setNeutral(neutral + 1);
-  const badInc = () => setBad(bad + 1);
+  const goodInc = () => {
+    setGood(good + 1);
+  }
+  const neutralInc = () => { 
+    setNeutral(neutral + 1);
+  }
+  const badInc = () => {
+    setBad(bad + 1);
+  }
+
+  const sum = good + neutral + bad;
+
+  const getPerc = (num, tot) => {
+    let perc = (num * 100) / (tot);
+    if (Number.isNaN(perc)) {
+      return 0
+    } else {
+      return perc
+    }
+  }
+
+  const posPerc = getPerc(good, sum);
 
   return (
     <>
@@ -41,6 +60,9 @@ const App = () => {
       <Data text="good" val={good}/>
       <Data text="neutral" val={neutral}/>
       <Data text="bad" val={bad}/>
+      <Data text="all" val={sum}/>
+      <Data text="average" val={good - bad}/>
+      <Data text="positive" val={posPerc + " %"}/>
     </>
   );
 }
