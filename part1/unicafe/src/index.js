@@ -13,7 +13,7 @@ const Button = ({text, click}) => {
   );
 }
 
-const Data = ({text, val}) => {
+const Statistic = ({text, val}) => {
   return (
     <>
       <p>{text}</p>
@@ -22,11 +22,39 @@ const Data = ({text, val}) => {
   );
 }
 
+const Statistics = (
+  {good,
+  neutral,
+  bad,
+  goodText,
+  neutralText,
+  badText,
+  sum,
+  average,
+  posPerc,
+  sumText,
+  averageText,
+  posPercText}
+  ) => {
+
+  return (
+    <>
+      <Statistic text={goodText} val={good}/>
+      <Statistic text={neutralText} val={neutral}/>
+      <Statistic text={badText} val={bad}/>
+      <Statistic text={sumText} val={sum}/>
+      <Statistic text={averageText} val={average}/>
+      <Statistic text={posPercText} val={posPerc + "%"}/>
+    </>
+  );
+}
+
 const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-
+  const sum = good + neutral + bad;
+  
   const goodInc = () => {
     setGood(good + 1);
   }
@@ -36,9 +64,7 @@ const App = () => {
   const badInc = () => {
     setBad(bad + 1);
   }
-
-  const sum = good + neutral + bad;
-
+  
   const getPerc = (num, tot) => {
     let perc = (num * 100) / (tot);
     if (Number.isNaN(perc)) {
@@ -47,8 +73,23 @@ const App = () => {
       return perc
     }
   }
-
+  
   const posPerc = getPerc(good, sum);
+  
+  const data = {
+    good: good,
+    neutral: neutral,
+    bad: bad,
+    goodText: "Good",
+    neutralText: "Neutral",
+    badText: "Bad",
+    sum: sum,
+    average: good - bad,
+    posPerc: posPerc,
+    sumText: "Total",
+    averageText: "Average",
+    posPercText: "Positive"
+  }
 
   return (
     <>
@@ -57,12 +98,7 @@ const App = () => {
       <Button text="neutral" click={neutralInc}/>
       <Button text="bad" click={badInc}/>
       <Title text="statistics"/>
-      <Data text="good" val={good}/>
-      <Data text="neutral" val={neutral}/>
-      <Data text="bad" val={bad}/>
-      <Data text="all" val={sum}/>
-      <Data text="average" val={good - bad}/>
-      <Data text="positive" val={posPerc + " %"}/>
+      <Statistics {...data}/>
     </>
   );
 }
