@@ -22,20 +22,9 @@ const Statistic = ({text, val}) => {
   );
 }
 
-const Statistics = (
-  {good,
-  neutral,
-  bad,
-  goodText,
-  neutralText,
-  badText,
-  sum,
-  average,
-  posPerc,
-  sumText,
-  averageText,
-  posPercText}
-  ) => {
+const Statistics = ({
+    good, neutral, bad, goodText, neutralText, badText, sum, average, posPerc, sumText, averageText, posPercText
+  }) => {
   if (good == 0 && neutral == 0 && bad == 0) {
     return (
       <>
@@ -43,7 +32,6 @@ const Statistics = (
       </>
     );
   }
-
   return (
     <>
       <Statistic text={goodText} val={good}/>
@@ -109,7 +97,6 @@ const App = () => {
     </>
   );
 }
-
 
 ReactDOM.render(<App />, 
   document.getElementById('root')
