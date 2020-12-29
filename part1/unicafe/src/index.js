@@ -36,6 +36,13 @@ const Statistics = (
   averageText,
   posPercText}
   ) => {
+  if (good == 0 && neutral == 0 && bad == 0) {
+    return (
+      <>
+        <Statistic text="No feedback given"/>
+      </>
+    );
+  }
 
   return (
     <>
