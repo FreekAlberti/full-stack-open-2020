@@ -16,8 +16,10 @@ const Button = ({text, click}) => {
 const Statistic = ({text, val}) => {
   return (
     <>
-      <p>{text}</p>
-      <p>{val}</p>
+    <tr>
+      <td>{text}</td>
+      <td>{val}</td>
+    </tr>
     </>
   );
 }
