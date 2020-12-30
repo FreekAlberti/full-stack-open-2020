@@ -36,12 +36,16 @@ const Statistics = ({
   }
   return (
     <>
-      <Statistic text={goodText} val={good}/>
-      <Statistic text={neutralText} val={neutral}/>
-      <Statistic text={badText} val={bad}/>
-      <Statistic text={sumText} val={sum}/>
-      <Statistic text={averageText} val={average}/>
-      <Statistic text={posPercText} val={posPerc + "%"}/>
+    <table>
+      <tbody>
+        <Statistic text={goodText} val={good}/>
+        <Statistic text={neutralText} val={neutral}/>
+        <Statistic text={badText} val={bad}/>
+        <Statistic text={sumText} val={sum}/>
+        <Statistic text={averageText} val={average}/>
+        <Statistic text={posPercText} val={posPerc + "%"}/>
+      </tbody>
+    </table>
     </>
   );
 }
