@@ -13,20 +13,27 @@ const anecdotes = [
 const App = (props) => {
 
   const [selected, setSelected] = useState(0)
+  const [vote, setVote] = useState(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0));
 
   const randomNumber = () => {
-    let random = Math.floor((Math.random() * 6));
-    setSelected(random);
+    setSelected(Math.floor(Math.random() * anecdotes.length));
+  }
+  
+  const incrVote = () => {
+    const copy = [...vote];
+    copy[selected] += 1;
+    setVote(copy);
   }
 
   return (
     <>
       <p>{props.anecdotes[selected]}</p>
+      <p>has {vote[selected]} votes</p>
       <button type="button" onClick={randomNumber}>another anecdote</button>
+      <button type="button" onClick={incrVote}>vote</button>
     </>
   )
 }
-
 
 ReactDOM.render(
   <App anecdotes={anecdotes} />,
