@@ -10,6 +10,18 @@ const anecdotes = [
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
 
+const Section = ({title, text, vote}) => {
+  return (
+    <>
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <p>has {vote} votes</p>
+    </>
+  );
+}
+
+const Button = ({fun, text}) => <button type="button" onClick={fun}>{text}</button>
+
 const App = (props) => {
 
   const [selected, setSelected] = useState(0)
@@ -27,10 +39,10 @@ const App = (props) => {
 
   return (
     <>
-      <p>{props.anecdotes[selected]}</p>
-      <p>has {vote[selected]} votes</p>
-      <button type="button" onClick={randomNumber}>another anecdote</button>
-      <button type="button" onClick={incrVote}>vote</button>
+      <Section title="Anecdote of the day" text={props.anecdotes[selected]} vote={vote[selected]} />
+      <Button fun={randomNumber} text="another anecdote"/>
+      <Button fun={incrVote} text="vote"/>
+      <Section title="Anecdote with most votes" text={props.anecdotes[vote.indexOf(Math.max(...vote))]} vote={Math.max(...vote)} />
     </>
   )
 }
